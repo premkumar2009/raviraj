@@ -12,31 +12,37 @@ export const AboutSection: React.FC = () => {
           {/* Left Column: Company Introduction */}
           <div className="lg:col-span-7 space-y-6">
             <div className="space-y-2">
-              <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#0F291E]">
-                Company Profile
-              </span>
+              <div className="flex items-center gap-2">
+                <span className="text-xs font-semibold uppercase tracking-[0.2em] text-[#0F291E]">
+                  Company Profile
+                </span>
+                <span className="text-stone-300">·</span>
+                <span className="text-xs font-bold text-amber-800 uppercase tracking-wider">
+                  30+ Years Industry Heritage
+                </span>
+              </div>
               <h2 className="font-serif-brand text-2xl sm:text-4xl lg:text-5xl font-bold tracking-tight text-stone-900 leading-[1.2]">
                 About Raviraj Spices Exports
               </h2>
             </div>
 
             <p className="text-base sm:text-lg text-stone-700 leading-relaxed font-normal">
-              Raviraj Spices Exports Pvt Ltd is an Indian spice export company based in Guntur, Andhra Pradesh. The company focuses on sourcing and supplying Indian spices and agricultural products for buyers seeking quality, reliability and professional export support.
+              Raviraj Spices Exports Pvt Ltd is an Indian spice export company based in Guntur, Andhra Pradesh. Backed by over 30 years of agricultural and spice trading experience in the region, the company focuses on sourcing and supplying Indian spices and agricultural products for buyers seeking quality, reliability and professional export support.
             </p>
 
             <div className="p-6 bg-stone-100/70 border-l-4 border-[#0F291E] rounded-r-md space-y-3">
               <h3 className="font-serif-brand text-base font-bold text-stone-900">
-                Guntur Sourcing & Agricultural Strength
+                30 Years of Sourcing & Agricultural Strength in Guntur
               </h3>
               <p className="text-sm text-stone-600 leading-relaxed">
-                Located in Guntur, the premier center of India’s spice cultivation, we maintain proximity to local agricultural markets, primary farm producers, and transit corridors. This proximity enables thorough quality oversight from initial farm receipt through export packaging.
+                Located in Guntur, the premier center of India’s spice cultivation, our three decades of ground experience provide unmatched access to local agricultural markets, primary farm producers, and transit corridors. This enduring presence enables thorough quality oversight from initial farm receipt through export packaging.
               </p>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
               <div className="border border-stone-200 p-4 rounded-md bg-white">
-                <span className="block text-xs font-semibold text-[#0F291E] uppercase tracking-wider">Primary Location</span>
-                <span className="text-sm font-medium text-stone-900">Guntur, Andhra Pradesh, India</span>
+                <span className="block text-xs font-semibold text-[#0F291E] uppercase tracking-wider">Industry Experience</span>
+                <span className="text-sm font-bold text-stone-900">30+ Years in Guntur Spice Sector</span>
               </div>
               <div className="border border-stone-200 p-4 rounded-md bg-white">
                 <span className="block text-xs font-semibold text-[#0F291E] uppercase tracking-wider">Business Focus</span>

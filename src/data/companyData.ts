@@ -17,6 +17,7 @@ export interface ProcessingStage {
   description: string;
   focus: string;
   iconName: string;
+  image: string;
 }
 
 export interface CredentialItem {
@@ -49,14 +50,17 @@ export const COMPANY_INFO = {
   name: "RAVIRAJ SPICES EXPORTS PVT LTD",
   shortName: "Raviraj Spices Exports",
   tagline: "Quality Indian Spices. Trusted Global Supply.",
+  experience: "30+ Years of Experience",
+  experienceSubtitle: "Over 3 Decades of Agricultural & Spice Trade Heritage in Guntur",
   subTagline: "Raviraj Spices Exports Pvt Ltd connects quality Indian spices and agricultural products with buyers through reliable sourcing, quality-focused processing and professional export support.",
   managingDirector: {
     name: "SADHU SIVS SANKAR RAO",
     designation: "MANAGING DIRECTOR",
     company: "Raviraj Spices Exports Pvt Ltd",
     location: "Guntur, Andhra Pradesh, India",
-    bio: "Leading Raviraj Spices Exports Pvt Ltd with a commitment to authentic sourcing from Guntur's agricultural heartland, stringent quality processing, and dedicated service to domestic and international spice buyers.",
-    message: "Welcome to Raviraj Spices Exports Pvt Ltd. Situated in Guntur, the spice capital of India, we are committed to delivering genuine agricultural produce with transparency, reliability, and strict adherence to processing standards. We take pride in building enduring partnerships with buyers around the globe."
+    experience: "30+ Years in Spice Cultivation & Export Trade",
+    bio: "With over 30 years of deep-rooted experience in the Guntur spice trade, Sadhu Sivs Sankar Rao leads Raviraj Spices Exports Pvt Ltd with profound knowledge of crop cycles, grading standards, and agricultural grower networks across Andhra Pradesh and India.",
+    message: "With over 30 years in the Guntur spice trade, our foundation is built on genuine agricultural sourcing, consistent processing discipline, and direct accountability to our domestic and international buyers. We invite you to experience the authentic quality of Indian spices."
   },
   contact: {
     phone: "9246777627",
@@ -85,6 +89,10 @@ export const COMPANY_INFO = {
 
 export const TRUST_HIGHLIGHTS = [
   {
+    title: "30+ YEARS EXPERIENCE",
+    description: "Over three decades of deep-rooted spice trade and agricultural heritage in Guntur."
+  },
+  {
     title: "QUALITY PRODUCTS",
     description: "Careful sourcing and product selection from trusted regional farming tracts."
   },
@@ -95,10 +103,6 @@ export const TRUST_HIGHLIGHTS = [
   {
     title: "EXPORT SUPPORT",
     description: "Professional support for buyer documentation, custom packaging, and shipping requirements."
-  },
-  {
-    title: "DIRECT CONTACT",
-    description: "Easy and prompt direct communication with the Raviraj management team."
   }
 ];
 
@@ -178,43 +182,49 @@ export const PROCESSING_STAGES: ProcessingStage[] = [
     step: "01",
     title: "SOURCING",
     description: "Direct farm and primary agricultural mandi procurement in Guntur and key spice cultivation belts.",
-    focus: "Farm-level origin integrity & moisture monitoring",
-    iconName: "Sprout"
+    focus: "Farm-level origin integrity, farmer partnerships & moisture monitoring",
+    iconName: "Sprout",
+    image: "/src/assets/images/stage_01_sourcing_1790319869315.jpg"
   },
   {
     step: "02",
     title: "QUALITY SELECTION",
     description: "Rigorous visual inspection, pod maturity verification, and physical quality parameter screening.",
-    focus: "Removal of immature crops & foreign matter",
-    iconName: "SearchCheck"
+    focus: "Individual inspection, removal of immature crops & foreign matter",
+    iconName: "SearchCheck",
+    image: "/src/assets/images/stage_02_selection_1790319884158.jpg"
   },
   {
     step: "03",
     title: "CLEANING & PROCESSING",
     description: "Modern hygienic handling facility with dust separation, stone removal, and gentle air-cleaning.",
-    focus: "Hygienic processing & mechanical purity",
-    iconName: "Sparkles"
+    focus: "Mechanical purity, hygienic destoning & sanitary screening",
+    iconName: "Sparkles",
+    image: "/src/assets/images/stage_03_cleaning_1790319897441.jpg"
   },
   {
     step: "04",
     title: "GRADING",
     description: "Precise sorting by pod size, color consistency, pungency category, and buyer grade requirements.",
-    focus: "Uniform physical and sensory characteristics",
-    iconName: "SlidersHorizontal"
+    focus: "Uniform physical grading, ASTA color value & length sorting",
+    iconName: "SlidersHorizontal",
+    image: "/src/assets/images/stage_04_grading_1790319915539.jpg"
   },
   {
     step: "05",
     title: "PACKAGING",
     description: "Packaging in heavy-duty food-grade jute burlap and multi-ply poly bags with moisture-lock liners.",
-    focus: "Tamper-evident sealing & export protection",
-    iconName: "PackageCheck"
+    focus: "Tamper-evident stitch sealing & moisture-barrier export protection",
+    iconName: "PackageCheck",
+    image: "/src/assets/images/stage_05_packaging_1790319929962.jpg"
   },
   {
     step: "06",
     title: "EXPORT DISPATCH",
     description: "Palletized container loading, container fumigation, phytosanitary checks, and dispatch to major sea ports.",
-    focus: "End-to-end container logistics & documentation",
-    iconName: "Ship"
+    focus: "Forklift stuffing, ocean container logistics & export customs clearance",
+    iconName: "Ship",
+    image: "/src/assets/images/stage_06_dispatch_1790319944020.jpg"
   }
 ];
 
@@ -315,23 +325,44 @@ export const GALLERY_DATA: GalleryItem[] = [
   },
   {
     id: "gal-4",
-    title: "Modern Spice Processing Warehouse",
+    title: "Stage 01: Agricultural Harvest & Sourcing",
     category: "Quality & Processing",
-    image: "/src/assets/images/processing_facility_1790318998511.jpg",
-    caption: "Hygienic sorting and processing floor designed to meet international export sanitation standards."
+    image: "/src/assets/images/stage_01_sourcing_1790319869315.jpg",
+    caption: "Direct procurement from mature chilli and spice crop farms in Guntur, Andhra Pradesh."
   },
   {
     id: "gal-5",
-    title: "Export-Ready Bulk Packaging & Pallets",
-    category: "Packaging",
-    image: "/src/assets/images/export_packaging_1790319011456.jpg",
-    caption: "Palletized durable jute and poly bags staged for container freight shipping."
+    title: "Stage 02: Manual & Technical Quality Inspection",
+    category: "Quality & Processing",
+    image: "/src/assets/images/stage_02_selection_1790319884158.jpg",
+    caption: "Meticulous quality inspection of dried chillies and turmeric on clean stainless steel sorting tables."
   },
   {
     id: "gal-6",
-    title: "Authentic Indian Spice Assortment",
-    category: "Products",
-    image: "/src/assets/images/hero_spices_export_1790318934185.jpg",
-    caption: "Rich agricultural heritage of Andhra Pradesh and India delivered to global spice importers."
+    title: "Stage 03: Industrial Cleaning & Destoning",
+    category: "Quality & Processing",
+    image: "/src/assets/images/stage_03_cleaning_1790319897441.jpg",
+    caption: "Modern food-grade pneumatic vibratory cleaners removing impurities and dust particles."
+  },
+  {
+    id: "gal-7",
+    title: "Stage 04: Spice Grading by Size & ASTA Color",
+    category: "Quality & Processing",
+    image: "/src/assets/images/stage_04_grading_1790319915539.jpg",
+    caption: "Uniform physical grading ensuring consistent pod dimensions and color specifications."
+  },
+  {
+    id: "gal-8",
+    title: "Stage 05: Export Bulk Packaging & Stitching",
+    category: "Packaging",
+    image: "/src/assets/images/stage_05_packaging_1790319929962.jpg",
+    caption: "Industrial stitching of tamper-evident heavy jute burlap and poly-lined export sacks."
+  },
+  {
+    id: "gal-9",
+    title: "Stage 06: Container Freight Dispatch",
+    category: "Packaging",
+    image: "/src/assets/images/stage_06_dispatch_1790319944020.jpg",
+    caption: "Palletized container stuffing and freight staging for ocean dispatch via Chennai & Krishnapatnam ports."
   }
 ];

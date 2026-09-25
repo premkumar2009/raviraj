@@ -8,7 +8,8 @@ import {
   Ship,
   ShieldCheck,
   CheckCircle2,
-  ChevronRight
+  ChevronRight,
+  Maximize2
 } from 'lucide-react';
 import { PROCESSING_STAGES, QUALITY_COMMITMENT } from '../data/companyData';
 
@@ -18,19 +19,19 @@ export const QualityProcessingSection: React.FC = () => {
   const getStageIcon = (index: number) => {
     switch (index) {
       case 0:
-        return <Sprout className="w-5 h-5" />;
+        return <Sprout className="w-4 h-4" />;
       case 1:
-        return <SearchCheck className="w-5 h-5" />;
+        return <SearchCheck className="w-4 h-4" />;
       case 2:
-        return <Sparkles className="w-5 h-5" />;
+        return <Sparkles className="w-4 h-4" />;
       case 3:
-        return <SlidersHorizontal className="w-5 h-5" />;
+        return <SlidersHorizontal className="w-4 h-4" />;
       case 4:
-        return <PackageCheck className="w-5 h-5" />;
+        return <PackageCheck className="w-4 h-4" />;
       case 5:
-        return <Ship className="w-5 h-5" />;
+        return <Ship className="w-4 h-4" />;
       default:
-        return <CheckCircle2 className="w-5 h-5" />;
+        return <CheckCircle2 className="w-4 h-4" />;
     }
   };
 
@@ -38,7 +39,7 @@ export const QualityProcessingSection: React.FC = () => {
 
   return (
     <section id="quality" className="py-20 lg:py-28 bg-white border-t border-stone-200">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
         
         {/* Main Section Header */}
         <div className="max-w-3xl mx-auto text-center space-y-3">
@@ -49,15 +50,15 @@ export const QualityProcessingSection: React.FC = () => {
             Quality & Processing
           </h2>
           <p className="text-base sm:text-lg text-stone-600">
-            From careful sourcing to export-ready packaging.
+            From careful sourcing to export-ready packaging — dedicated steps with documented quality controls.
           </p>
         </div>
 
-        {/* 6-Stage Timeline */}
+        {/* 6-Stage Timeline with Individual Step Images */}
         <div className="space-y-8">
           
-          {/* Desktop Horizontal Timeline Stepper */}
-          <div className="hidden lg:grid grid-cols-6 gap-2 border-b border-stone-200 pb-4">
+          {/* Desktop Stepper Bar with Step Photos */}
+          <div className="hidden lg:grid grid-cols-6 gap-3">
             {PROCESSING_STAGES.map((stage, idx) => {
               const isActive = idx === activeStageIndex;
               return (
@@ -65,37 +66,50 @@ export const QualityProcessingSection: React.FC = () => {
                   key={stage.step}
                   type="button"
                   onClick={() => setActiveStageIndex(idx)}
-                  className={`text-left p-3 rounded-lg transition-all border ${
+                  className={`text-left rounded-lg overflow-hidden transition-all border flex flex-col justify-between ${
                     isActive
-                      ? 'bg-[#0F291E] text-white border-[#0F291E] shadow-sm'
-                      : 'bg-[#FAF8F5] text-stone-700 border-stone-200/80 hover:border-amber-600/40'
+                      ? 'bg-[#0F291E] text-white border-[#0F291E] shadow-md ring-2 ring-amber-400/80 -translate-y-1'
+                      : 'bg-[#FAF8F5] text-stone-700 border-stone-200 hover:border-amber-600/50 hover:bg-white'
                   }`}
                 >
-                  <div className="flex items-center justify-between mb-2">
-                    <span className={`font-mono text-xs font-bold ${isActive ? 'text-amber-300' : 'text-stone-400'}`}>
-                      {stage.step}
-                    </span>
-                    <span className={isActive ? 'text-amber-300' : 'text-stone-500'}>
-                      {getStageIcon(idx)}
+                  {/* Step Image Thumbnail */}
+                  <div className="relative aspect-[16/10] w-full overflow-hidden bg-stone-200">
+                    <img
+                      src={stage.image}
+                      alt={`Stage ${stage.step} ${stage.title}`}
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+                    <span className="absolute top-2 left-2 px-1.5 py-0.5 rounded bg-black/75 backdrop-blur-xs font-mono text-[10px] font-bold text-amber-300">
+                      Step {stage.step}
                     </span>
                   </div>
-                  <h4 className="font-serif-brand text-xs font-bold tracking-wider truncate">
-                    {stage.title}
-                  </h4>
+
+                  <div className="p-3 space-y-1">
+                    <div className="flex items-center gap-1.5">
+                      <span className={isActive ? 'text-amber-300' : 'text-stone-500'}>
+                        {getStageIcon(idx)}
+                      </span>
+                      <h4 className="font-serif-brand text-xs font-bold tracking-wider truncate">
+                        {stage.title}
+                      </h4>
+                    </div>
+                  </div>
                 </button>
               );
             })}
           </div>
 
-          {/* Active Stage Detailed Spotlight Box */}
+          {/* Active Stage Detailed Spotlight Box (Shows exact stage-related image) */}
           <div className="bg-[#FAF8F5] rounded-xl border border-stone-200 overflow-hidden shadow-sm">
             <div className="grid grid-cols-1 lg:grid-cols-12">
               
-              {/* Stage Description & Focus */}
+              {/* Stage Description & Controls */}
               <div className="lg:col-span-7 p-6 sm:p-10 flex flex-col justify-between space-y-6">
                 <div className="space-y-4">
                   <div className="flex items-center gap-3">
-                    <span className="font-mono text-2xl font-bold text-amber-700 bg-amber-100/70 px-3 py-1 rounded">
+                    <span className="font-mono text-2xl font-bold text-amber-800 bg-amber-100/80 px-3 py-1 rounded">
                       Stage {activeStage.step}
                     </span>
                     <div className="h-6 w-px bg-stone-300" />
@@ -130,11 +144,11 @@ export const QualityProcessingSection: React.FC = () => {
                     onClick={() => setActiveStageIndex((prev) => Math.max(0, prev - 1))}
                     className="py-2 px-4 text-xs font-semibold text-stone-700 bg-white border border-stone-300 rounded disabled:opacity-40 disabled:cursor-not-allowed hover:bg-stone-50"
                   >
-                    Previous Stage
+                    ← Previous Stage
                   </button>
 
                   <span className="text-xs font-mono text-stone-500">
-                    {activeStageIndex + 1} of {PROCESSING_STAGES.length}
+                    Stage {activeStageIndex + 1} of {PROCESSING_STAGES.length}
                   </span>
 
                   <button
@@ -143,32 +157,31 @@ export const QualityProcessingSection: React.FC = () => {
                     onClick={() => setActiveStageIndex((prev) => Math.min(PROCESSING_STAGES.length - 1, prev + 1))}
                     className="py-2 px-4 text-xs font-semibold text-white bg-[#0F291E] rounded disabled:opacity-40 disabled:cursor-not-allowed hover:bg-[#16382B]"
                   >
-                    Next Stage
+                    Next Stage →
                   </button>
                 </div>
               </div>
 
-              {/* Processing Visual Showcase */}
-              <div className="lg:col-span-5 relative bg-stone-900 min-h-[300px]">
+              {/* Dedicated Step Image for the Active Stage */}
+              <div className="lg:col-span-5 relative bg-stone-900 min-h-[340px] flex items-center justify-center overflow-hidden">
                 <img
-                  src={
-                    activeStageIndex >= 4
-                      ? "/src/assets/images/export_packaging_1790319011456.jpg"
-                      : "/src/assets/images/processing_facility_1790318998511.jpg"
-                  }
-                  alt={`Raviraj Spices Exports ${activeStage.title} facility and handling`}
+                  key={activeStage.step}
+                  src={activeStage.image}
+                  alt={`Stage ${activeStage.step}: ${activeStage.title}`}
                   referrerPolicy="no-referrer"
-                  className="w-full h-full object-cover"
+                  className="w-full h-full object-cover animate-in fade-in zoom-in-95 duration-300"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+                
                 <div className="absolute bottom-4 left-4 right-4 text-white">
                   <span className="text-[10px] uppercase font-mono tracking-widest text-amber-300 block">
-                    Export Processing Facility
+                    Dedicated Stage Visual · Step {activeStage.step}
                   </span>
-                  <p className="text-xs text-stone-300">
-                    {activeStageIndex >= 4
-                      ? "Heavy-duty export container pallets and moisture-barrier packaging."
-                      : "Stainless steel inspection and sanitary spice sorting operations."}
+                  <h4 className="font-serif-brand text-base font-bold text-white">
+                    {activeStage.title}
+                  </h4>
+                  <p className="text-xs text-stone-300 line-clamp-2 mt-0.5">
+                    {activeStage.focus}
                   </p>
                 </div>
               </div>
@@ -176,25 +189,32 @@ export const QualityProcessingSection: React.FC = () => {
             </div>
           </div>
 
-          {/* Mobile Vertical Process Timeline */}
+          {/* Mobile Vertical Process Stepper with Individual Images */}
           <div className="lg:hidden space-y-3 pt-2">
             <span className="text-xs font-bold uppercase tracking-wider text-stone-500 block text-center mb-2">
-              Browse All 6 Processing Stages:
+              Select any of the 6 Processing Stages:
             </span>
-            <div className="grid grid-cols-2 gap-2">
+            <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
               {PROCESSING_STAGES.map((s, idx) => (
                 <button
                   key={s.step}
                   type="button"
                   onClick={() => setActiveStageIndex(idx)}
-                  className={`p-2.5 rounded text-left border text-xs flex items-center justify-between ${
+                  className={`p-2 rounded text-left border text-xs flex flex-col gap-1.5 ${
                     idx === activeStageIndex
-                      ? 'bg-[#0F291E] text-white border-[#0F291E]'
+                      ? 'bg-[#0F291E] text-white border-[#0F291E] ring-2 ring-amber-400'
                       : 'bg-white text-stone-800 border-stone-200'
                   }`}
                 >
-                  <span className="font-semibold">{s.step}. {s.title}</span>
-                  <ChevronRight className="w-3.5 h-3.5 opacity-60" />
+                  <div className="aspect-[16/10] w-full rounded overflow-hidden bg-stone-200">
+                    <img
+                      src={s.image}
+                      alt={s.title}
+                      referrerPolicy="no-referrer"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <span className="font-semibold truncate">{s.step}. {s.title}</span>
                 </button>
               ))}
             </div>

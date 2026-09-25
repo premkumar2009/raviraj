@@ -47,7 +47,7 @@ export const LeadershipSection: React.FC = () => {
               
               <div className="relative z-10 p-6 text-white space-y-1">
                 <span className="text-[11px] font-semibold uppercase tracking-widest text-amber-300">
-                  Managing Director
+                  Managing Director · 30+ Years Experience
                 </span>
                 <h3 className="font-serif-brand text-2xl font-bold text-white">
                   SADHU SIVS SANKAR RAO
@@ -76,7 +76,7 @@ export const LeadershipSection: React.FC = () => {
 
                 {/* Professional Introduction */}
                 <p className="text-sm text-stone-700 leading-relaxed">
-                  As Managing Director of Raviraj Spices Exports Pvt Ltd, Sadhu Sivs Sankar Rao leads the enterprise with a core focus on establishing dependable spice supply chains directly from the fertile agricultural regions of Guntur, Andhra Pradesh to domestic and global buyers.
+                  As Managing Director of Raviraj Spices Exports Pvt Ltd, Sadhu Sivs Sankar Rao brings over 30 years of seasoned leadership and deep agricultural roots in Guntur, Andhra Pradesh. His three decades of domain expertise guide the company's rigorous procurement, farmer relationships, and export supply chain management.
                 </p>
 
                 {/* Message from Managing Director Placeholder */}
@@ -87,7 +87,7 @@ export const LeadershipSection: React.FC = () => {
                       Message from the Managing Director
                     </span>
                     <p className="text-xs sm:text-sm text-stone-600 italic leading-relaxed">
-                      "At Raviraj Spices Exports, we believe in honest sourcing, rigorous processing discipline, and transparent communication. We welcome international and domestic trade partners to connect directly with us for their agricultural spice requirements."
+                      "With 30 years of experience in the Guntur spice trade, we believe that enduring international partnerships are built on honest farm sourcing, rigorous processing discipline, and transparent communication. We welcome domestic and global buyers to connect directly with us for their agricultural spice requirements."
                     </p>
                     <span className="text-[11px] text-stone-400 block pt-1 font-mono">
                       — Sadhu Sivs Sankar Rao, Managing Director

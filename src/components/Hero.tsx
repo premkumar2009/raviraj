@@ -29,7 +29,11 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           <div className="lg:col-span-8 space-y-6">
             {/* Unboxed Metadata Kicker (Anti-Pill Rule) */}
-            <div className="flex items-center justify-center lg:justify-start gap-2 text-xs sm:text-sm font-medium text-amber-300 tracking-wider">
+            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-2 text-xs sm:text-sm font-medium text-amber-300 tracking-wider">
+              <span className="font-semibold text-amber-300">
+                30+ Years of Industry Experience
+              </span>
+              <span className="text-amber-500/70" aria-hidden="true">·</span>
               <span className="flex items-center gap-1.5 text-amber-200">
                 <MapPin className="w-3.5 h-3.5 text-amber-400" />
                 Guntur, Andhra Pradesh
@@ -78,11 +82,16 @@ export const Hero: React.FC<HeroProps> = ({ onOpenQuote }) => {
             {/* Quiet Origin Callout */}
             <div className="pt-4 flex items-center justify-center lg:justify-start gap-6 text-xs text-stone-300/80">
               <div>
-                <span className="block font-semibold text-stone-100 uppercase tracking-wider">Direct Origin</span>
-                <span>Guntur Spice Belt, India</span>
+                <span className="block font-semibold text-stone-100 uppercase tracking-wider">Experience</span>
+                <span className="text-amber-300 font-medium">30+ Years in Guntur Spice Trade</span>
               </div>
               <div className="w-px h-8 bg-stone-700/60" />
               <div>
+                <span className="block font-semibold text-stone-100 uppercase tracking-wider">Direct Origin</span>
+                <span>Guntur Spice Belt, India</span>
+              </div>
+              <div className="hidden sm:block w-px h-8 bg-stone-700/60" />
+              <div className="hidden sm:block">
                 <span className="block font-semibold text-stone-100 uppercase tracking-wider">Specialization</span>
                 <span>Red Chillies · Turmeric · Coriander</span>
               </div>

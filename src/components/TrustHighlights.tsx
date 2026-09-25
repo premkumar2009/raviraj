@@ -1,9 +1,9 @@
 import React from 'react';
-import { Sparkles, Cog, Globe2, PhoneCall } from 'lucide-react';
+import { Award, Sparkles, Cog, Globe2, PhoneCall } from 'lucide-react';
 import { TRUST_HIGHLIGHTS } from '../data/companyData';
 
 export const TrustHighlights: React.FC = () => {
-  const icons = [Sparkles, Cog, Globe2, PhoneCall];
+  const icons = [Award, Sparkles, Cog, Globe2, PhoneCall];
 
   return (
     <section className="bg-[#FAF8F5] border-y border-stone-200/80 py-10 sm:py-14">
