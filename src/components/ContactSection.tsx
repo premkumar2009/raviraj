@@ -1,9 +1,13 @@
 import React from 'react';
-import { Phone, MessageSquare, Mail, MapPin, ExternalLink, Download, Clock, Building } from 'lucide-react';
+import { Phone, MessageSquare, Mail, MapPin, ExternalLink, TrendingUp, Building, BarChart3 } from 'lucide-react';
 import { COMPANY_INFO } from '../data/companyData';
-import { downloadVCard } from '../utils/vcard';
+import { TODAY_MARKET_UPDATE } from '../data/marketData';
 
-export const ContactSection: React.FC = () => {
+interface ContactSectionProps {
+  onOpenMarketUpdate: () => void;
+}
+
+export const ContactSection: React.FC<ContactSectionProps> = ({ onOpenMarketUpdate }) => {
   return (
     <section id="contact" className="py-20 lg:py-28 bg-white border-t border-stone-200">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-16">
@@ -21,13 +25,13 @@ export const ContactSection: React.FC = () => {
           </p>
         </div>
 
-        {/* Quick Contact Action Bar */}
+        {/* Quick Contact Action Bar (Replaced Save Contact with Today Market Update card) */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           
           {/* Call */}
           <a
             href={`tel:${COMPANY_INFO.contact.phone}`}
-            className="group p-5 bg-[#FAF8F5] rounded-lg border border-stone-200 hover:border-amber-600/40 shadow-xs hover:shadow-md transition-all flex items-center gap-4"
+            className="group p-5 bg-[#FAF8F5] rounded-xl border border-stone-200 hover:border-amber-600/40 shadow-xs hover:shadow-md transition-all flex items-center gap-4"
           >
             <div className="w-12 h-12 rounded-lg bg-[#0F291E] text-amber-300 flex items-center justify-center shrink-0">
               <Phone className="w-5 h-5" />
@@ -45,7 +49,7 @@ export const ContactSection: React.FC = () => {
             href={COMPANY_INFO.contact.whatsappLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="group p-5 bg-emerald-50/70 rounded-lg border border-emerald-200 hover:border-emerald-400 shadow-xs hover:shadow-md transition-all flex items-center gap-4"
+            className="group p-5 bg-emerald-50/70 rounded-xl border border-emerald-200 hover:border-emerald-400 shadow-xs hover:shadow-md transition-all flex items-center gap-4"
           >
             <div className="w-12 h-12 rounded-lg bg-emerald-700 text-white flex items-center justify-center shrink-0">
               <MessageSquare className="w-5 h-5" />
@@ -61,7 +65,7 @@ export const ContactSection: React.FC = () => {
           {/* Email */}
           <a
             href={`mailto:${COMPANY_INFO.contact.email}`}
-            className="group p-5 bg-[#FAF8F5] rounded-lg border border-stone-200 hover:border-amber-600/40 shadow-xs hover:shadow-md transition-all flex items-center gap-4"
+            className="group p-5 bg-[#FAF8F5] rounded-xl border border-stone-200 hover:border-amber-600/40 shadow-xs hover:shadow-md transition-all flex items-center gap-4"
           >
             <div className="w-12 h-12 rounded-lg bg-amber-100 text-amber-900 flex items-center justify-center shrink-0">
               <Mail className="w-5 h-5 text-amber-800" />
@@ -74,19 +78,27 @@ export const ContactSection: React.FC = () => {
             </div>
           </a>
 
-          {/* vCard */}
+          {/* Today Market Update Button Card (Replaced Save Contact) */}
           <button
             type="button"
-            onClick={downloadVCard}
-            className="group p-5 bg-stone-900 text-white rounded-lg border border-stone-800 hover:bg-stone-800 shadow-xs hover:shadow-md transition-all flex items-center gap-4 text-left"
+            onClick={onOpenMarketUpdate}
+            className="group p-5 bg-gradient-to-br from-[#0F291E] to-[#16382B] text-white rounded-xl border border-amber-500/40 hover:border-amber-400 shadow-md hover:shadow-lg transition-all flex items-center gap-4 text-left transform hover:-translate-y-0.5 active:translate-y-0"
           >
-            <div className="w-12 h-12 rounded-lg bg-amber-400 text-stone-950 flex items-center justify-center shrink-0">
-              <Download className="w-5 h-5" />
+            <div className="w-12 h-12 rounded-lg bg-amber-400 text-stone-950 flex items-center justify-center shrink-0 shadow-sm relative">
+              <BarChart3 className="w-6 h-6" />
+              <span className="absolute -top-1 -right-1 flex h-3 w-3">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75" />
+                <span className="relative inline-flex rounded-full h-3 w-3 bg-red-600" />
+              </span>
             </div>
             <div>
-              <span className="text-xs font-bold uppercase tracking-wider text-amber-300 block">Save Contact</span>
-              <span className="text-xs font-bold text-white group-hover:text-amber-200">
-                Download MD vCard
+              <div className="flex items-center gap-1.5">
+                <span className="text-[11px] font-bold uppercase tracking-wider text-amber-300">
+                  Today Market Update
+                </span>
+              </div>
+              <span className="text-xs font-bold text-white group-hover:text-amber-200 block">
+                Guntur Yard Rates ({TODAY_MARKET_UPDATE.date})
               </span>
             </div>
           </button>

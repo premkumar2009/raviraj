@@ -28,6 +28,7 @@ export interface CredentialItem {
   description: string;
   status: string;
   documentPlaceholder: string;
+  documentImage: string;
 }
 
 export interface AwardItem {
@@ -255,7 +256,8 @@ export const CERTIFICATIONS_DATA: CredentialItem[] = [
     category: "Food Safety",
     description: "Statutory food safety license ensuring compliance with hygienic handling and national food quality standards.",
     status: "Company Registration Record on File",
-    documentPlaceholder: "Credential document to be added. Contact us for certified verification copies."
+    documentPlaceholder: "Credential document on file. Official verification copies available for trade due-diligence.",
+    documentImage: "/src/assets/images/cert_fssai_doc_1790323093666.jpg"
   },
   {
     id: "apeda",
@@ -264,7 +266,8 @@ export const CERTIFICATIONS_DATA: CredentialItem[] = [
     category: "Export Authority",
     description: "Official export council registration facilitating agricultural and food product consignments to global markets.",
     status: "Export Registration Record on File",
-    documentPlaceholder: "Credential document to be added. Contact us for certified verification copies."
+    documentPlaceholder: "Credential document on file. Official verification copies available for trade due-diligence.",
+    documentImage: "/src/assets/images/cert_apeda_doc_1790323115250.jpg"
   },
   {
     id: "spices-board",
@@ -273,7 +276,8 @@ export const CERTIFICATIONS_DATA: CredentialItem[] = [
     category: "Government Body",
     description: "Registration with the apex Indian spice regulatory body regulating spice trade quality and international exports.",
     status: "Regulatory Registration on File",
-    documentPlaceholder: "Credential document to be added. Contact us for certified verification copies."
+    documentPlaceholder: "Credential document on file. Official verification copies available for trade due-diligence.",
+    documentImage: "/src/assets/images/cert_spicesboard_doc_1790323132541.jpg"
   },
   {
     id: "iso",
@@ -282,7 +286,8 @@ export const CERTIFICATIONS_DATA: CredentialItem[] = [
     category: "Quality Standard",
     description: "Quality management framework alignment ensuring systematic batch tracking, inspection, and customer satisfaction.",
     status: "Quality Management Framework",
-    documentPlaceholder: "Credential document to be added. Contact us for certified verification copies."
+    documentPlaceholder: "Credential document on file. Official verification copies available for trade due-diligence.",
+    documentImage: "/src/assets/images/cert_iso_doc_1790323145006.jpg"
   }
 ];
 

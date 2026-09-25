@@ -1,9 +1,12 @@
 import React from 'react';
-import { ArrowDown, Download, MessageSquare, Phone } from 'lucide-react';
+import { ArrowDown, TrendingUp, MessageSquare, Phone, BarChart2 } from 'lucide-react';
 import { COMPANY_INFO } from '../data/companyData';
-import { downloadVCard } from '../utils/vcard';
 
-export const AboutSection: React.FC = () => {
+interface AboutSectionProps {
+  onOpenMarketUpdate: () => void;
+}
+
+export const AboutSection: React.FC<AboutSectionProps> = ({ onOpenMarketUpdate }) => {
   return (
     <section id="about" className="py-20 lg:py-28 bg-[#FAF8F5]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -50,29 +53,35 @@ export const AboutSection: React.FC = () => {
               </div>
             </div>
 
+            {/* Actions: Replaced Save Contact with Today Market Update */}
             <div className="pt-4 flex flex-wrap items-center gap-4">
               <a
                 href="#leadership"
-                className="px-6 py-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-white bg-[#0F291E] hover:bg-[#16382B] rounded shadow-sm transition-colors inline-flex items-center gap-2"
+                className="px-6 py-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-white bg-[#0F291E] hover:bg-[#16382B] rounded-lg shadow-sm transition-colors inline-flex items-center gap-2"
               >
                 <span>Learn More About Us</span>
                 <ArrowDown className="w-4 h-4" />
               </a>
 
+              {/* Today Market Update Button */}
               <button
                 type="button"
-                onClick={downloadVCard}
-                className="px-5 py-3 text-xs sm:text-sm font-semibold tracking-wider text-stone-800 bg-white hover:bg-stone-50 border border-stone-300 rounded shadow-sm transition-colors inline-flex items-center gap-2"
+                onClick={onOpenMarketUpdate}
+                className="group relative px-5 py-3 text-xs sm:text-sm font-bold uppercase tracking-wider text-amber-950 bg-gradient-to-r from-amber-400 via-amber-300 to-amber-400 hover:from-amber-300 hover:to-amber-200 border border-amber-500/40 rounded-lg shadow-md hover:shadow-lg transition-all inline-flex items-center gap-2 transform hover:-translate-y-0.5 active:translate-y-0"
               >
-                <Download className="w-4 h-4 text-amber-700" />
-                <span>Save Contact (vCard)</span>
+                <span className="relative flex h-2.5 w-2.5">
+                  <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-600 opacity-75" />
+                  <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-red-600" />
+                </span>
+                <BarChart2 className="w-4 h-4 text-amber-900" />
+                <span>Today Market Update</span>
               </button>
             </div>
           </div>
 
           {/* Right Column: Managing Director Card */}
           <div className="lg:col-span-5">
-            <div className="relative group max-w-md mx-auto bg-white rounded-lg border border-stone-200 shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl">
+            <div className="relative group max-w-md mx-auto bg-white rounded-xl border border-stone-200 shadow-md overflow-hidden transition-all duration-300 hover:shadow-xl">
               {/* Photo Area */}
               <div className="relative aspect-[3/4] overflow-hidden bg-stone-100">
                 <img
@@ -86,7 +95,7 @@ export const AboutSection: React.FC = () => {
                 {/* Overlay Text Details */}
                 <div className="absolute bottom-0 left-0 right-0 p-6 text-white space-y-1">
                   <span className="text-[11px] font-semibold uppercase tracking-[0.2em] text-amber-300">
-                    MANAGING DIRECTOR
+                    MANAGING DIRECTOR · 30+ YEARS EXPERIENCE
                   </span>
                   <h3 className="font-serif-brand text-xl sm:text-2xl font-bold tracking-tight text-white">
                     SADHU SIVS SANKAR RAO
@@ -109,7 +118,7 @@ export const AboutSection: React.FC = () => {
                 <div className="grid grid-cols-2 gap-2 pt-1">
                   <a
                     href={`tel:${COMPANY_INFO.contact.phone}`}
-                    className="py-2.5 px-3 text-xs font-semibold text-stone-800 bg-stone-100 hover:bg-stone-200 rounded text-center flex items-center justify-center gap-1.5 transition-colors"
+                    className="py-2.5 px-3 text-xs font-semibold text-stone-800 bg-stone-100 hover:bg-stone-200 rounded-lg text-center flex items-center justify-center gap-1.5 transition-colors"
                   >
                     <Phone className="w-3.5 h-3.5 text-stone-700" />
                     <span>Call MD</span>
@@ -118,12 +127,22 @@ export const AboutSection: React.FC = () => {
                     href={COMPANY_INFO.contact.whatsappLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="py-2.5 px-3 text-xs font-semibold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded text-center flex items-center justify-center gap-1.5 transition-colors"
+                    className="py-2.5 px-3 text-xs font-semibold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-200 rounded-lg text-center flex items-center justify-center gap-1.5 transition-colors"
                   >
                     <MessageSquare className="w-3.5 h-3.5 text-emerald-600" />
                     <span>WhatsApp</span>
                   </a>
                 </div>
+
+                {/* Additional Quick Market Button on MD Card */}
+                <button
+                  type="button"
+                  onClick={onOpenMarketUpdate}
+                  className="w-full py-2 px-3 text-xs font-bold text-amber-900 bg-amber-50 hover:bg-amber-100 border border-amber-200/80 rounded-lg flex items-center justify-center gap-1.5 transition-colors"
+                >
+                  <TrendingUp className="w-3.5 h-3.5 text-red-600" />
+                  <span>Check Today's Guntur Mandi Rates</span>
+                </button>
               </div>
             </div>
           </div>

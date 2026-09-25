@@ -3,7 +3,11 @@ import { Phone, Mail, MapPin, X, ShieldCheck } from 'lucide-react';
 import { COMPANY_INFO } from '../data/companyData';
 import { downloadVCard } from '../utils/vcard';
 
-export const Footer: React.FC = () => {
+interface FooterProps {
+  onOpenMarketUpdate?: () => void;
+}
+
+export const Footer: React.FC<FooterProps> = ({ onOpenMarketUpdate }) => {
   const [legalModal, setLegalModal] = useState<'privacy' | 'terms' | null>(null);
 
   const quickLinks = [
@@ -51,14 +55,17 @@ export const Footer: React.FC = () => {
               Export-oriented agricultural spice procurement, cleaning, grading and dispatch serving domestic and global B2B buyers.
             </p>
 
-            <div className="pt-2">
-              <button
-                type="button"
-                onClick={downloadVCard}
-                className="text-xs font-semibold text-amber-300 hover:text-amber-200 underline flex items-center gap-1.5"
-              >
-                <span>Download Sadhu Sivs Sankar Rao vCard</span>
-              </button>
+            <div className="pt-2 flex flex-col gap-2">
+              {onOpenMarketUpdate && (
+                <button
+                  type="button"
+                  onClick={onOpenMarketUpdate}
+                  className="text-xs font-bold text-amber-300 hover:text-amber-200 underline flex items-center gap-1.5 text-left"
+                >
+                  <span className="w-2 h-2 rounded-full bg-red-500 animate-ping inline-block" />
+                  <span>View Today's Guntur Mandi Market Update</span>
+                </button>
+              )}
             </div>
           </div>
 

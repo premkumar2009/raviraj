@@ -4,9 +4,10 @@ import { COMPANY_INFO } from '../data/companyData';
 
 interface NavbarProps {
   onOpenQuote: (productName?: string) => void;
+  onOpenMarketUpdate: () => void;
 }
 
-export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote }) => {
+export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote, onOpenMarketUpdate }) => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
@@ -66,7 +67,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote }) => {
           </nav>
 
           {/* Primary Actions (Zone 3) */}
-          <div className="hidden sm:flex items-center gap-3">
+          <div className="hidden sm:flex items-center gap-2.5">
+            {/* Today Market Update Button */}
+            <button
+              type="button"
+              onClick={onOpenMarketUpdate}
+              className="px-3 py-1.5 text-xs font-bold text-amber-200 bg-amber-950/60 hover:bg-amber-900/80 border border-amber-500/40 rounded-md transition-all flex items-center gap-1.5 shadow-xs"
+              title="View Today's Guntur Mandi Rates"
+            >
+              <span className="relative flex h-2 w-2">
+                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-500 opacity-75" />
+                <span className="relative inline-flex rounded-full h-2 w-2 bg-red-500" />
+              </span>
+              <span>Today Market Update</span>
+            </button>
+
             <a
               href={COMPANY_INFO.contact.whatsappLink}
               target="_blank"
@@ -130,9 +145,21 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenQuote }) => {
               type="button"
               onClick={() => {
                 setMobileMenuOpen(false);
+                onOpenMarketUpdate();
+              }}
+              className="w-full py-2.5 px-4 text-center text-xs font-bold uppercase tracking-wider bg-gradient-to-r from-amber-400 to-amber-300 text-stone-950 rounded-md shadow-sm flex items-center justify-center gap-2"
+            >
+              <span className="w-2 h-2 rounded-full bg-red-600 animate-pulse" />
+              <span>Today Market Update (24/09/2026)</span>
+            </button>
+
+            <button
+              type="button"
+              onClick={() => {
+                setMobileMenuOpen(false);
                 onOpenQuote();
               }}
-              className="w-full py-2.5 px-4 text-center text-xs font-bold uppercase tracking-wider bg-amber-400 text-[#0F291E] rounded-md shadow-sm"
+              className="w-full py-2.5 px-4 text-center text-xs font-bold uppercase tracking-wider bg-stone-800 text-white rounded-md shadow-sm"
             >
               Request a Quote
             </button>

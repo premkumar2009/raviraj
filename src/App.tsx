@@ -14,24 +14,33 @@ import { InquirySection } from './components/InquirySection';
 import { ContactSection } from './components/ContactSection';
 import { Footer } from './components/Footer';
 import { FloatingActions } from './components/FloatingActions';
+import { TodayMarketModal } from './components/TodayMarketModal';
+import { InquiryChannelModal } from './components/InquiryChannelModal';
 
 export default function App() {
   const [selectedProductForInquiry, setSelectedProductForInquiry] = useState<string>('Red Chillies');
+  const [isMarketModalOpen, setIsMarketModalOpen] = useState<boolean>(false);
+  const [isInquiryModalOpen, setIsInquiryModalOpen] = useState<boolean>(false);
+  const [inquiryModalMessage, setInquiryModalMessage] = useState<string>('');
 
-  const handleOpenQuote = (productName?: string) => {
-    if (productName) {
-      setSelectedProductForInquiry(productName);
-    }
-    const inquirySection = document.getElementById('inquiry');
-    if (inquirySection) {
-      inquirySection.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+  const handleOpenQuote = (productName?: string, defaultMessage?: string) => {
+    const product = productName || 'Red Chillies';
+    setSelectedProductForInquiry(product);
+    setInquiryModalMessage(defaultMessage || '');
+    setIsInquiryModalOpen(true);
+  };
+
+  const handleOpenMarketUpdate = () => {
+    setIsMarketModalOpen(true);
   };
 
   return (
     <div className="min-h-screen bg-[#FAF8F5] text-stone-900 selection:bg-amber-800 selection:text-white flex flex-col font-sans">
       {/* Sticky Responsive Header */}
-      <Navbar onOpenQuote={handleOpenQuote} />
+      <Navbar
+        onOpenQuote={handleOpenQuote}
+        onOpenMarketUpdate={handleOpenMarketUpdate}
+      />
 
       {/* Main Content Flow */}
       <main className="flex-1">
@@ -41,11 +50,11 @@ export default function App() {
         {/* 2. Trust Highlights (Immediately Below Hero) */}
         <TrustHighlights />
 
-        {/* 3. About Raviraj Spices Exports */}
-        <AboutSection />
+        {/* 3. About Raviraj Spices Exports with Today Market Update button */}
+        <AboutSection onOpenMarketUpdate={handleOpenMarketUpdate} />
 
-        {/* 4. Leadership Section */}
-        <LeadershipSection />
+        {/* 4. Leadership Section with Today Market Update button */}
+        <LeadershipSection onOpenMarketUpdate={handleOpenMarketUpdate} />
 
         {/* 5. Products Section & Specifications */}
         <ProductsSection onOpenQuote={handleOpenQuote} />
@@ -53,7 +62,7 @@ export default function App() {
         {/* 6. Quality & Processing (6 Stages + Commitment) */}
         <QualityProcessingSection />
 
-        {/* 7. Certifications & Registrations */}
+        {/* 7. Certifications & Registrations with Big Realistic Certificate Sheets */}
         <CertificationsSection />
 
         {/* 8. Awards & Recognition */}
@@ -72,14 +81,29 @@ export default function App() {
         />
 
         {/* 12. Contact Section & Verified Google Maps */}
-        <ContactSection />
+        <ContactSection onOpenMarketUpdate={handleOpenMarketUpdate} />
       </main>
 
       {/* Floating Call & WhatsApp Buttons */}
       <FloatingActions />
 
       {/* Footer */}
-      <Footer />
+      <Footer onOpenMarketUpdate={handleOpenMarketUpdate} />
+
+      {/* Today Market Update Modal (Neat Graph View & Mandi Bulletin) */}
+      <TodayMarketModal
+        isOpen={isMarketModalOpen}
+        onClose={() => setIsMarketModalOpen(false)}
+        onOpenQuote={handleOpenQuote}
+      />
+
+      {/* Inquiry Channel Dispatch Modal (WhatsApp or Email) */}
+      <InquiryChannelModal
+        isOpen={isInquiryModalOpen}
+        onClose={() => setIsInquiryModalOpen(false)}
+        productName={selectedProductForInquiry}
+        defaultMessage={inquiryModalMessage}
+      />
     </div>
   );
 }

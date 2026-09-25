@@ -1,9 +1,12 @@
 import React, { useState } from 'react';
-import { Quote, Download, Phone, MessageSquare, Mail, Building, MapPin, CheckCircle } from 'lucide-react';
+import { Quote, TrendingUp, Phone, MessageSquare, Mail, BarChart3, CheckCircle } from 'lucide-react';
 import { COMPANY_INFO } from '../data/companyData';
-import { downloadVCard } from '../utils/vcard';
 
-export const LeadershipSection: React.FC = () => {
+interface LeadershipSectionProps {
+  onOpenMarketUpdate: () => void;
+}
+
+export const LeadershipSection: React.FC<LeadershipSectionProps> = ({ onOpenMarketUpdate }) => {
   const [copied, setCopied] = useState(false);
 
   const handleCopyContact = () => {
@@ -53,8 +56,7 @@ export const LeadershipSection: React.FC = () => {
                   SADHU SIVS SANKAR RAO
                 </h3>
                 <p className="text-xs text-stone-300 flex items-center gap-1.5 pt-1">
-                  <MapPin className="w-3.5 h-3.5 text-amber-400 shrink-0" />
-                  Guntur, Andhra Pradesh, India
+                  <span>Guntur, Andhra Pradesh, India</span>
                 </p>
               </div>
             </div>
@@ -70,7 +72,7 @@ export const LeadershipSection: React.FC = () => {
                     Sadhu Sivs Sankar Rao
                   </h4>
                   <p className="text-xs font-medium text-amber-800 uppercase tracking-widest">
-                    Managing Director · Raviraj Spices Exports Pvt Ltd
+                    Managing Director · Raviraj Spices Exports Pvt Ltd (ESTD. 1992)
                   </p>
                 </div>
 
@@ -96,23 +98,29 @@ export const LeadershipSection: React.FC = () => {
                 </div>
               </div>
 
-              {/* Direct Leadership Affordances */}
+              {/* Direct Leadership Affordances: Replaced Save Contact with Today Market Update */}
               <div className="space-y-3 pt-2 border-t border-stone-200">
                 <div className="flex flex-wrap items-center gap-3">
+                  
+                  {/* Today Market Update Button */}
                   <button
                     type="button"
-                    onClick={downloadVCard}
-                    className="flex-1 min-w-[170px] py-2.5 px-4 text-xs font-bold uppercase tracking-wider text-white bg-[#0F291E] hover:bg-[#16382B] rounded shadow-sm inline-flex items-center justify-center gap-2 transition-colors"
+                    onClick={onOpenMarketUpdate}
+                    className="flex-1 min-w-[200px] py-2.5 px-4 text-xs font-bold uppercase tracking-wider text-[#0F291E] bg-gradient-to-r from-amber-400 via-amber-300 to-amber-400 hover:from-amber-300 hover:to-amber-200 rounded-lg shadow-sm inline-flex items-center justify-center gap-2 transition-all transform hover:-translate-y-0.5 active:translate-y-0"
                   >
-                    <Download className="w-3.5 h-3.5 text-amber-300" />
-                    <span>Save Contact (vCard)</span>
+                    <span className="relative flex h-2 w-2">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-red-600 opacity-75" />
+                      <span className="relative inline-flex rounded-full h-2 w-2 bg-red-600" />
+                    </span>
+                    <BarChart3 className="w-4 h-4 text-[#0F291E]" />
+                    <span>Today Market Update</span>
                   </button>
 
                   <a
                     href={COMPANY_INFO.contact.whatsappLink}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="py-2.5 px-4 text-xs font-semibold text-emerald-800 bg-emerald-100/70 hover:bg-emerald-200/80 border border-emerald-300 rounded inline-flex items-center justify-center gap-1.5 transition-colors"
+                    className="py-2.5 px-4 text-xs font-semibold text-emerald-800 bg-emerald-100/70 hover:bg-emerald-200/80 border border-emerald-300 rounded-lg inline-flex items-center justify-center gap-1.5 transition-colors"
                   >
                     <MessageSquare className="w-3.5 h-3.5 text-emerald-700" />
                     <span>WhatsApp</span>
@@ -121,7 +129,7 @@ export const LeadershipSection: React.FC = () => {
                   <button
                     type="button"
                     onClick={handleCopyContact}
-                    className="py-2.5 px-4 text-xs font-semibold text-stone-700 bg-white hover:bg-stone-50 border border-stone-300 rounded inline-flex items-center justify-center gap-1.5 transition-colors"
+                    className="py-2.5 px-4 text-xs font-semibold text-stone-700 bg-white hover:bg-stone-50 border border-stone-300 rounded-lg inline-flex items-center justify-center gap-1.5 transition-colors"
                   >
                     {copied ? (
                       <>

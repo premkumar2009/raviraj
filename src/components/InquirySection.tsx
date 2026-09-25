@@ -316,25 +316,50 @@ export const InquirySection: React.FC<InquirySectionProps> = ({
                 )}
               </div>
 
-              {/* Submit Buttons */}
-              <div className="pt-2 flex flex-col sm:flex-row items-center gap-4">
-                <button
-                  type="submit"
-                  disabled={isSubmitting}
-                  className="w-full sm:w-auto px-8 py-3.5 text-xs font-bold uppercase tracking-wider text-white bg-[#0F291E] hover:bg-[#16382B] rounded shadow-md transition-all flex items-center justify-center gap-2 disabled:opacity-50"
-                >
-                  <Send className="w-4 h-4 text-amber-400" />
-                  <span>{isSubmitting ? 'Transmitting Inquiry...' : 'Request a Quote'}</span>
-                </button>
+              {/* Submit Buttons: Ask Email or WhatsApp */}
+              <div className="pt-2 space-y-3">
+                <span className="block text-xs font-bold uppercase tracking-wider text-stone-700">
+                  Select How You Want to Dispatch Your Inquiry:
+                </span>
 
-                <button
-                  type="button"
-                  onClick={handleWhatsAppDirect}
-                  className="w-full sm:w-auto px-6 py-3.5 text-xs font-semibold text-emerald-800 bg-emerald-50 hover:bg-emerald-100 border border-emerald-300 rounded flex items-center justify-center gap-2 transition-colors"
-                >
-                  <MessageSquare className="w-4 h-4 text-emerald-600" />
-                  <span>Or Send Directly via WhatsApp</span>
-                </button>
+                <div className="flex flex-col sm:flex-row items-center gap-3">
+                  {/* Option 1: WhatsApp */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (!validate()) return;
+                      const text = encodeURIComponent(
+                        `*COMMERCIAL INQUIRY - RAVIRAJ SPICES EXPORTS PVT LTD*\nDate: ${new Date().toLocaleDateString('en-GB')}\n---------------------------------------\n*Product:* ${formData.product}\n*Buyer Name:* ${formData.fullName}\n*Company:* ${formData.companyName || 'N/A'}\n*Country / Port:* ${formData.country}\n*Email:* ${formData.email}\n*Phone / WA:* ${formData.phone}\n*Required Quantity:* ${formData.quantity || 'Inquiry'}\n---------------------------------------\n*Requirement Details:*\n${formData.message}\n---------------------------------------\nDestination: Raviraj Spices Exports Pvt Ltd (Guntur, India)`
+                      );
+                      window.open(`https://wa.me/919246777627?text=${text}`, '_blank');
+                      setSubmitted(true);
+                      if (onClearInitialProduct) onClearInitialProduct();
+                    }}
+                    className="w-full sm:flex-1 py-3.5 px-5 text-xs font-bold uppercase tracking-wider text-white bg-emerald-700 hover:bg-emerald-800 rounded-lg shadow-md transition-all flex items-center justify-center gap-2"
+                  >
+                    <MessageSquare className="w-4 h-4 text-emerald-200" />
+                    <span>Send via WhatsApp (+91 92467 77627)</span>
+                  </button>
+
+                  {/* Option 2: Email */}
+                  <button
+                    type="button"
+                    onClick={() => {
+                      if (!validate()) return;
+                      const body = encodeURIComponent(
+                        `COMMERCIAL INQUIRY - RAVIRAJ SPICES EXPORTS PVT LTD\nDate: ${new Date().toLocaleDateString('en-GB')}\n\nProduct: ${formData.product}\nBuyer Name: ${formData.fullName}\nCompany: ${formData.companyName || 'N/A'}\nCountry / Port: ${formData.country}\nEmail: ${formData.email}\nPhone / WhatsApp: ${formData.phone}\nRequired Quantity: ${formData.quantity || 'Inquiry'}\n\nRequirement Details:\n${formData.message}\n\nDestination: info@ravirajspices.in`
+                      );
+                      const subject = encodeURIComponent(`Commercial Spice Inquiry: ${formData.product} - ${formData.companyName || formData.fullName}`);
+                      window.open(`mailto:info@ravirajspices.in?cc=sales@ravirajspices.in&subject=${subject}&body=${body}`, '_blank');
+                      setSubmitted(true);
+                      if (onClearInitialProduct) onClearInitialProduct();
+                    }}
+                    className="w-full sm:flex-1 py-3.5 px-5 text-xs font-bold uppercase tracking-wider text-white bg-[#0F291E] hover:bg-[#16382B] rounded-lg shadow-md transition-all flex items-center justify-center gap-2"
+                  >
+                    <Mail className="w-4 h-4 text-amber-300" />
+                    <span>Send via Email (info@ravirajspices.in)</span>
+                  </button>
+                </div>
               </div>
 
             </form>
